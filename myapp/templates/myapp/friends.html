@@ -1,0 +1,35 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'myapp/css/friends.css' %}">
+{% endblock %}
+
+{% block header %}friends{% endblock %}
+
+{% block content %}
+<h1 class="content_h1">Chatapp/Friends</h1>
+<p class="content_p">This is a sample page</p>
+
+<table class="table">
+    <tr>
+        {% comment %}
+        アイコンの部分は後で作る
+        {% endcomment %}
+        <th>NAME</th>
+        <th>MESSAGE</th>
+        <th>DATE</th>
+    </tr>
+{% for friend, talk, time in info %}
+    <tr>
+        <td><a href="{% url 'talk_room' friend.id %}">{{friend.username}}</a></td>
+        <td>{{talk}}</td>
+        <td>{{time}}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}
+
+{% block footer %}
+<a href="{% url 'setting' %}">設定</a>
+{% endblock %}

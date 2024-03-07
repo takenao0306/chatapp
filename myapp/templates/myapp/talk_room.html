@@ -1,1 +1,38 @@
-TR
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'myapp/css/talk_room.css' %}">
+{% endblock %}
+
+{% block header %}
+<div><a href="{% url 'friends' %}">＜</a></div>
+<div>Talk Room  {{friend}}</div>
+<div><a href="">更新</a></div>
+{% endblock %}
+
+{% block content %}
+<h1 class="content_h1">Chatapp/Talk_Room</h1>
+<p class="content_p">This is a sample page</p>
+
+{% for talk in talk_data %}
+<tr>
+    <td>{{talk.message}}</td>
+    <td>{{talk.pub_time}}</td>
+</tr>
+<br>
+{% endfor %}
+<form method="post" action="{% url 'talk_room' friend.id %}" enctype="multipart/form-data" class="message-form">
+    {% csrf_token %}
+    {% for field in form %}
+    <p>
+        {{ field }}
+    </p>
+    {% endfor %}
+    <button type="submit" class="signup-form__submit">送信</button>
+</form>
+{% endblock %}
+
+{% block footer %}
+<a href="{% url 'setting' %}">設定</a>
+{% endblock %}

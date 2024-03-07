@@ -1,1 +1,25 @@
-I
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'myapp/css/index.css' %}">
+{% endblock %}
+
+{% block header %}
+<nav class="index_header_nav">
+    <ul class="index_header_ul">
+        <li class="index_header_li"><a href="{% url 'login' %}">Login</a></li>
+        <li class="index_header_li"><a href="{% url 'signup' %}">Sign up</a></li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+<h1 class="content_h1">Chatapp/Index</h1>
+<p class="content_p">This is a sample page</p>
+<p class="content_p">Welcome to our WebSite!! \
+    You can use this chat app after login. If you do not sign up, please do signup first.
+</p>
+{% endblock %}
+
+{% block footer %}{% endblock %}
